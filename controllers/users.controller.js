@@ -58,10 +58,11 @@ const login = catchAsync(async (req, res, next) => {
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return next(new appError("Wrong credentials", 400))
   }
-  user.password = undefined
+  
   const token = jwt.sign({ id: user.id }, process.env.JWT_SIGN, {
     expiresIn: "3h",
   })
+  user.password = undefined
   res.status(200).json({
     status: "success",
     data: { user, token },
