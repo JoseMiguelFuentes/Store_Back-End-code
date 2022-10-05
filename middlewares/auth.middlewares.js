@@ -20,7 +20,7 @@ const protectSession = catchAsync(async (req, res, next) => {
   if (!token) {
     return next(new appError("You are not logged", 403))
   }
-  const decoded = jwt.verify(token, process.env.JWT_SiGN)
+  const decoded = jwt.verify(token, process.env.JWT_SIGN)
   const user = await User.findOne({
     where: { id: decoded.id, status: "active" },
   })
