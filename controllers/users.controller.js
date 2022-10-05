@@ -60,7 +60,7 @@ const login = catchAsync(async (req, res, next) => {
   }
   user.password = undefined
   const token = jwt.sign({ id: user.id }, process.env.JWT_SIGN, {
-    expiresIn: "30d",
+    expiresIn: "3h",
   })
   res.status(200).json({
     status: "success",
