@@ -87,9 +87,9 @@ const deleteProduct = catchAsync(async (req, res, next) => {
 const getAllCategories = catchAsync(async (req, res, next) => {
   const categories = await Category.findAll({
     where: { status: "active" },
-    attributes: { exclude: ["createdAt", "updatedAt"] }
+    attributes: { exclude: ["createdAt", "updatedAt"] },
+    include:[{model:Product,attributes: { exclude: ["createdAt", "updatedAt"]}}]
   })
-  console.log('hola')
   res.status(200).json({
     status: "success",
     data: { categories }

@@ -12,7 +12,7 @@ const data = new Sequelize({
   database: process.env.DB_NAME,
   logging: false,
   dialectOptions:
-		process.env.NODE_ENV === 'development'
+		process.env.NODE_ENV === 'production'
 			? {
 					ssl: {
 						required: true,
